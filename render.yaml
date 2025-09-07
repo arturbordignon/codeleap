@@ -17,7 +17,7 @@ services:
       - key: FRONTEND_ORIGIN
         value: https://codeleap-frontend.onrender.com
 
-  - type: static
+  - type: static_site
     name: codeleap-frontend
     rootDir: client
     buildCommand: npm ci && npm run build
