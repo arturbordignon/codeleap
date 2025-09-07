@@ -17,9 +17,11 @@
 .primary {
   background: #7695ec;
 }
+
 .danger {
   background: #ff5151;
 }
+
 .success {
   background: #47b960;
 }
@@ -33,9 +35,11 @@
 .base:hover:not(:disabled) {
   filter: brightness(0.96);
 }
+
 .base:active:not(:disabled) {
   transform: translateY(1px);
 }
+
 .base:disabled {
   opacity: 0.6;
   cursor: not-allowed;

@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
-import styles from "./Main.module.css";
 import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";
-import inputStyles from "../../components/ui/Input/Input.module.css";
 import { PostCard } from "../../components/ui/PostCard";
 import { Modal } from "../../components/ui/Modal";
 import { Pagination } from "../../components/ui/Pagination";
 import { usePosts } from "../../store/postsStore";
 import exitIcon from "../../assets/exit.svg";
+import inputStyles from "../../components/ui/Input/Input.module.css";
+import styles from "./Main.module.css";
 
 export function Main({ username }) {
   const { items, count, limit, page, loading, error, goToPage, create, update, remove } =
@@ -21,29 +21,43 @@ export function Main({ username }) {
     [items]
   );
 
-  async function handleCreate(e) {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const title = fd.get("title")?.toString().trim();
-    const content = fd.get("content")?.toString().trim();
-    if (!title || !content || !username) return;
+  async function handleCreate(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title")?.toString().trim();
+    const content = formData.get("content")?.toString().trim();
+
+    if (!title || !content || !username) {
+      return;
+    }
+
     await create({ username, title, content });
-    e.currentTarget.reset();
+    event.currentTarget.reset();
   }
 
-  async function handleEditSave(e) {
-    e.preventDefault();
-    if (!editPost) return;
-    const fd = new FormData(e.currentTarget);
-    const title = fd.get("title")?.toString().trim() || "";
-    const content = fd.get("content")?.toString().trim() || "";
-    if (!title || !content) return;
+  async function handleEditSave(event) {
+    event.preventDefault();
+    if (!editPost) {
+      return;
+    }
+
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title")?.toString().trim() || "";
+    const content = formData.get("content")?.toString().trim() || "";
+
+    if (!title || !content) {
+      return;
+    }
+
     await update(editPost.id, { title, content });
     setEditPost(null);
   }
 
   async function handleConfirmDelete() {
-    if (!deletePost) return;
+    if (!deletePost) {
+      return;
+    }
+
     await remove(deletePost.id);
     setDeletePost(null);
   }
@@ -65,7 +79,6 @@ export function Main({ username }) {
           <span style={{ fontSize: 16 }}>Logout</span>
         </button>
       </div>
-
       <div className={styles.stack}>
         <section className={styles.card}>
           <h2 className={styles.cardTitle}>What’s on your mind?</h2>
@@ -78,7 +91,6 @@ export function Main({ username }) {
                 className={inputStyles.mainTitleInput}
               />
             </div>
-
             <div>
               <label className={styles.label}>Content</label>
               <Input
@@ -88,7 +100,6 @@ export function Main({ username }) {
                 className={inputStyles.mainContentInput}
               />
             </div>
-
             <div className={styles.actions}>
               <Button variant="primary" width={120} type="submit" disabled={loading}>
                 {loading ? "Posting…" : "Create"}
@@ -96,9 +107,7 @@ export function Main({ username }) {
             </div>
           </form>
         </section>
-
         {error && <p className={styles.error}>{error}</p>}
-
         {sorted.length === 0 && !loading ? (
           <div className={styles.empty}>
             <p>No posts yet. Be the first to share! ✨</p>
@@ -114,10 +123,8 @@ export function Main({ username }) {
             />
           ))
         )}
-
         <Pagination page={page} total={count} limit={limit} onPage={goToPage} />
       </div>
-
       <Modal
         open={!!deletePost}
         onClose={() => setDeletePost(null)}
@@ -142,7 +149,6 @@ export function Main({ username }) {
       >
         <div className={styles.modalWidth} />
       </Modal>
-
       <Modal
         open={!!editPost}
         onClose={() => setEditPost(null)}
@@ -186,7 +192,6 @@ export function Main({ username }) {
                 className={inputStyles.editTitleInput}
               />
             </div>
-
             <div>
               <label
                 style={{

@@ -3,7 +3,7 @@ import { formatTimeAgo } from "../../../lib/time";
 import editIcon from "../../../assets/edit.svg";
 import deleteIcon from "../../../assets/delete.svg";
 
-export function PostCard({ post, currentUser, onEdit, onDelete, onMentionClick }) {
+export function PostCard({ post, currentUser, onEdit, onDelete }) {
   const canEdit = currentUser && post?.username === currentUser;
 
   return (

@@ -26,7 +26,7 @@ export function Signup({ open = true, onSave }) {
         </Button>
       }
     >
-      <div style={{ width: 500 }}>
+      <div className={styles.modalContent}>
         <label
           style={{
             display: "block",
@@ -39,7 +39,6 @@ export function Signup({ open = true, onSave }) {
         >
           Please enter your username
         </label>
-
         <Input
           placeholder="John doe"
           className={styles.signupInput}

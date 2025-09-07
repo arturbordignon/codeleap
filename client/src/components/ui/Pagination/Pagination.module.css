@@ -6,6 +6,7 @@
   margin-top: 12px;
   flex-wrap: wrap;
 }
+
 .page,
 .nav {
   min-width: 36px;
@@ -17,20 +18,24 @@
   cursor: pointer;
   font-weight: 600;
 }
+
 .page:hover,
 .nav:hover {
   background: #f5f5f5;
 }
+
 .page:disabled,
 .nav:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .active {
   background: #7695ec;
   color: #fff;
   border-color: #7695ec;
 }
+
 .ellipsis {
   padding: 0 6px;
   color: #999;

@@ -3,16 +3,15 @@ export const API_BASE = import.meta.env.VITE_BACKEND_URL;
 async function http(url, options) {
   const res = await fetch(url, options);
 
-  // Handle 204 (e.g., DELETE)
-  if (res.status === 204) return null;
+  if (res.status === 204) {
+    return null;
+  }
 
   let data = null;
   const text = await res.text().catch(() => "");
   try {
     data = text ? JSON.parse(text) : null;
-  } catch {
-    // Ignore JSON parse error
-  }
+  } catch {}
 
   if (!res.ok) {
     const detail =

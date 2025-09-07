@@ -26,22 +26,22 @@ This project was built as part of a technical challenge, showcasing a **React fr
 
 ### Backend
 
-- **Django 5**
-- **Django REST Framework**
-- **SQLite** (default DB, can be swapped)
+- **Django 5 + Django REST Framework**
+- **Pagination: LimitOffsetPagination (10 per page by default)**
+- **CORS via django-cors-headers**
+- **SQLite locally / PostgreSQL in production (Render)**
 
 ---
 
 ## 📚 API Documentation
 
-The backend uses Django REST Framework’s router.  
-Base endpoint: /careers/
+Base path: /careers/ (note the trailing slash is required by DRF)
 
-### Example Endpoints
+### Endpoints
 
-- `GET /careers/` → List posts (paginated, supports `limit` and `offset`).
-- `POST /careers/` → Create a post.
-- `PATCH /careers/{id}/` → Update a post.
+- `GET /careers/` → List posts (supports ?limit=10&offset=0).
+- `POST /careers/` → Create { username, title, content }.
+- `PATCH /careers/{id}/` → Update { title, content }
 - `DELETE /careers/{id}/` → Delete a post.
 
 Example response:
@@ -76,15 +76,15 @@ Prerequisites
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/codeleap-network.git
+git clone https://github.com/arturbordignon/codeleap.git
 cd codeleap/server
 ```
 
 2. Create and activate a virtual environment:
 
 ```bash
-python -m venv venv
-source venv/bin/activate   # on Windows: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate   # on Windows: venv\Scripts\activate
 ```
 
 3. Install dependencies:
@@ -113,7 +113,7 @@ By default, the API will be available at:
 1. Move into the client folder:
 
 ```bash
-cd ../client
+cd ./client
 ```
 
 2. Install dependencies:
@@ -136,3 +136,17 @@ npm run dev
 
 By default, the app runs at:
 👉 http://localhost:3500/
+
+The Production URL's are:
+
+Backend:
+
+```bash
+https://codeleap-v15c.onrender.com/careers/
+```
+
+Frontend:
+
+```bash
+https://codeleap-backend-xkpe.onrender.com
+```

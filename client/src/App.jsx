@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useEffect } from "react";
 import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { PostsProvider } from "./store/postsStore";
@@ -9,7 +8,11 @@ import "./index.css";
 
 function RequireUsername({ username, children }) {
   const loc = useLocation();
-  if (!username) return <Navigate to="/signup" replace state={{ from: loc }} />;
+
+  if (!username) {
+    return <Navigate to="/signup" replace state={{ from: loc }} />;
+  }
+
   return children;
 }
 
@@ -22,11 +25,11 @@ export function App() {
   const [username, setUsername, ready] = useUsername();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // If not ready yet, do nothing
-  }, [ready]);
+  useEffect(() => {}, [ready]);
 
-  if (!ready) return null;
+  if (!ready) {
+    return null;
+  }
 
   return (
     <section className="container">

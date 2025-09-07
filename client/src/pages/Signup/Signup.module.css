@@ -2,3 +2,13 @@
   width: 100%;
   height: 32px;
 }
+
+.modalContent {
+  width: 500px;
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    width: 100%;
+  }
+}

@@ -11,9 +11,11 @@
 .backdropDim {
   background: rgba(0, 0, 0, 0.35);
 }
+
 .backdropGrey {
   background: #777777cc;
 }
+
 .backdropNone {
   background: transparent;
 }
@@ -29,6 +31,7 @@
 .borderStrong {
   border-color: #999999;
 }
+
 .borderSoft {
   border-color: #cccccc;
 }

@@ -64,8 +64,8 @@ export function PostsProvider({ children }) {
 
   const create = useCallback(
     async (payload) => {
-      const c = new AbortController();
-      await createPost(payload, c.signal);
+      const controller = new AbortController();
+      await createPost(payload, controller.signal);
       await goToPage(1);
     },
     [goToPage]
@@ -73,8 +73,8 @@ export function PostsProvider({ children }) {
 
   const update = useCallback(
     async (id, payload) => {
-      const c = new AbortController();
-      await patchPost(id, payload, c.signal);
+      const controller = new AbortController();
+      await patchPost(id, payload, controller.signal);
       await goToPage(state.page);
     },
     [goToPage, state.page]
@@ -82,8 +82,8 @@ export function PostsProvider({ children }) {
 
   const remove = useCallback(
     async (id) => {
-      const c = new AbortController();
-      await apiDelete(id, c.signal);
+      const controller = new AbortController();
+      await apiDelete(id, controller.signal);
 
       const newCount = Math.max(0, state.count - 1);
       const lastPageAfter = Math.max(1, Math.ceil(newCount / state.limit));
@@ -115,8 +115,10 @@ export function PostsProvider({ children }) {
 
 export function usePosts() {
   const context = useContext(PostsContext);
+
   if (!context) {
     throw new Error("usePosts must be used within PostsProvider");
   }
+
   return context;
 }
