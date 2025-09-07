@@ -82,7 +82,7 @@ export function Main({ username }) {
       <div className={styles.stack}>
         <section className={styles.card}>
           <h2 className={styles.cardTitle}>What’s on your mind?</h2>
-          <form className={styles.form} onSubmit={handleCreate}>
+          <form key={items.length} className={styles.form} onSubmit={handleCreate}>
             <div>
               <label className={styles.label}>Title</label>
               <Input
