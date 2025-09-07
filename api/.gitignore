@@ -37,8 +37,3 @@ htmlcov/
 .pytest_cache/
 nosetests.xml
 coverage.xml
-
-# Migrations (optional, keep if you want in repo)
-*/migrations/*.py
-*/migrations/*.pyc
-!*/migrations/__init__.py
