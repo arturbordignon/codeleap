@@ -4,24 +4,26 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# --- Core ---
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-only-secret")
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = list(filter(None, [
-    os.getenv("RENDER_EXTERNAL_HOSTNAME", ""),
-    "localhost",
-    "127.0.0.1",
-]))
-if not ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ["*"]
+RENDER_HOST = os.getenv("RENDER_EXTERNAL_HOSTNAME", "").strip()
+
+ALLOWED_HOSTS = [h for h in [RENDER_HOST, "localhost", "127.0.0.1"] if h] or ["*"]
 
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "").rstrip("/")
 CORS_ALLOWED_ORIGINS = [FRONTEND_ORIGIN] if FRONTEND_ORIGIN else []
-CSRF_TRUSTED_ORIGINS = []
-if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
-    CSRF_TRUSTED_ORIGINS.append(f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}")
 
+if DEBUG:
+    CORS_ALLOWED_ORIGINS += [
+        "http://localhost:3500",
+        "http://127.0.0.1:3500",
+    ]
+
+CSRF_TRUSTED_ORIGINS = []
+if RENDER_HOST:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_HOST}")
+    
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -84,7 +86,6 @@ else:
         }
     }
 
-# Password validators...
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
