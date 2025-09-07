@@ -1,0 +1,62 @@
+.base {
+  height: 32px;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: inherit;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: filter 120ms ease, opacity 120ms ease, transform 60ms ease;
+}
+
+.primary {
+  background: #7695ec;
+}
+.danger {
+  background: #ff5151;
+}
+.success {
+  background: #47b960;
+}
+
+.ghost {
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #e5e7eb;
+}
+
+.base:hover:not(:disabled) {
+  filter: brightness(0.96);
+}
+.base:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.base:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.label {
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-top-color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

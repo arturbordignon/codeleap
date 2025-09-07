@@ -1,0 +1,49 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+}
+
+.backdropDim {
+  background: rgba(0, 0, 0, 0.35);
+}
+.backdropGrey {
+  background: #777777cc;
+}
+.backdropNone {
+  background: transparent;
+}
+
+.modal {
+  background: #fff;
+  border: 1px solid;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.borderStrong {
+  border-color: #999999;
+}
+.borderSoft {
+  border-color: #cccccc;
+}
+
+.title {
+  margin: 0 0 24px 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
