@@ -71,7 +71,7 @@ Example response:
 Prerequisites
 
 - Node.js (version 14 or later)
-- Python 3.10+
+- Python 3.11+
 - pip
 
 ## Backend Setup (Django API)
@@ -80,7 +80,7 @@ Prerequisites
 
 ```bash
 git clone https://github.com/arturbordignon/codeleap.git
-cd codeleap/server
+cd codeleap/api
 ```
 
 2. Create and activate a virtual environment:
@@ -111,12 +111,23 @@ python manage.py runserver
 By default, the API will be available at:
 👉 http://localhost:8000/careers/
 
+All the .env Configs have conditions (this is not a good practice, but for this example I made it), so you won't get any problem running locally, but if you want to deploy, add this:
+```bash
+DJANGO_SECRET_KEY=your-secret-key-here
+DEBUG=(False for Production, True for Local)
+
+# Example for PostgreSQL (Render provides DATABASE_URL automatically):
+# DATABASE_URL=postgresql://user:password@host:5432/dbname
+FRONTEND_ORIGIN=http://localhost:3500 (Or Production URL of the Frontend)
+```
+
+
 ## Frontend Setup (React app)
 
 1. Move into the client folder:
 
 ```bash
-cd ./client
+cd ../client (if you are at /api)
 ```
 
 2. Install dependencies:
