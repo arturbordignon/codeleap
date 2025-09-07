@@ -1,10 +1,11 @@
 services:
   - type: web
     name: codeleap-api
-    env: python
+    runtime: python
     rootDir: api
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: python manage.py migrate && gunicorn server.wsgi --bind 0.0.0.0:$PORT --log-file -
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: python manage.py migrate
+    startCommand: gunicorn server.wsgi --bind 0.0.0.0:$PORT --log-file -
     envVars:
       - key: DJANGO_SECRET_KEY
         generateValue: true
@@ -16,9 +17,9 @@ services:
           property: connectionString
       - key: FRONTEND_ORIGIN
         value: https://codeleap-frontend.onrender.com
-
-  - type: static_site
+  - type: web
     name: codeleap-frontend
+    runtime: static
     rootDir: client
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
