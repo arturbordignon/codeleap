@@ -1,4 +1,4 @@
-# CodeLeap Network
+# CodeLeap Test
 
 A simple social network application where users can sign up, create posts, edit and delete them, and browse through a paginated feed.
 
