@@ -117,7 +117,7 @@ DJANGO_SECRET_KEY=your-secret-key-here
 DEBUG=(False for Production, True for Local)
 
 # Example for PostgreSQL (Render provides DATABASE_URL automatically):
-# DATABASE_URL=postgresql://user:password@host:5432/dbname
+DATABASE_URL=postgresql://user:password@host:5432/dbname
 FRONTEND_ORIGIN=http://localhost:3500 (Or Production URL of the Frontend)
 ```
 
